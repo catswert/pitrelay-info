@@ -6,4 +6,4 @@ The policy is a draft, version 2026-10-05. Report collection is closed. There is
 
 `index.html` is the complete page and `.nojekyll` allows direct static hosting with GitHub Pages. No build step is needed.
 
-Do not submit private information, code or reports through this repository's issues or pull requests. A privacy contact has not yet been designated.
+Do not submit private information, code or reports through this repository's issues or pull requests. Privacy questions can be sent to pitrelay@gmail.com; do not email report packages while collection is closed. The owner has selected a 90-day maximum retention period and a 30-day deletion-request commitment, subject to verifying the process before collection opens.
