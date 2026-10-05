@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PitRelay's draft privacy policy for optional issue reports. Report collection is closed; no submission is available.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <title>PitRelay Privacy</title>
+  <style>
+    :root { color-scheme: light; --ink: #162536; --muted: #4e6073; --blue: #164dab; --line: #d9e1ea; --paper: #fff; --navy: #102539; }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 1.5rem; }
+    body { margin: 0; background: #f5f7fa; color: var(--ink); font: 1.0625rem/1.7 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color: var(--blue); text-decoration-thickness: .08em; text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: .15em; }
+    a:focus-visible { outline: 3px solid #b65d00; outline-offset: 5px; border-radius: 2px; }
+    .skip-link { position: absolute; left: 1rem; top: -8rem; padding: .75rem 1rem; background: white; z-index: 2; }
+    .skip-link:focus { top: 1rem; }
+    .wrap { width: min(72rem, calc(100% - 4rem)); margin-inline: auto; }
+    .masthead { background: var(--navy); color: white; border-top: 5px solid #73b9ff; padding: 1.5rem 0 2.5rem; }
+    .topline { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .brand { font-size: 1.25rem; font-weight: 760; letter-spacing: -.03em; }
+    .version { color: #cad9e8; font-size: .9375rem; }
+    h1 { margin: 2rem 0 .6rem; font-size: clamp(2.3rem, 5.5vw, 3.8rem); line-height: 1.12; letter-spacing: -.045em; font-weight: 740; }
+    .intro { max-width: 43rem; margin: 0; color: #d9e6f3; font-size: 1.15rem; }
+    .notice { margin-top: 1.75rem; padding: 1rem 1.25rem; border-left: 4px solid #c27b15; background: #fff2d8; color: #563200; }
+    .notice strong { display: block; font-size: 1.125rem; line-height: 1.4; }
+    .notice p { margin: .4rem 0 0; font-size: 1rem; }
+    .layout { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 3.5rem; align-items: start; padding-block: 2.5rem 4rem; }
+    .sidebar { position: sticky; top: 2rem; font-size: .9375rem; }
+    .nav-label { margin: 0 0 .65rem; font-weight: 700; color: var(--ink); }
+    nav ol { list-style: none; margin: 0; padding: 0; }
+    nav li + li { margin-top: .35rem; }
+    nav a { display: block; padding: .25rem 0; color: var(--muted); }
+    .maintainer { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.5rem; color: var(--muted); }
+    .maintainer strong { display: block; color: var(--ink); font-weight: 650; }
+    article { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: .4rem 2.25rem 1.8rem; min-width: 0; }
+    section { padding-top: 1.8rem; }
+    section + section { border-top: 1px solid var(--line); margin-top: 1.6rem; }
+    h2 { font-size: 1.4rem; line-height: 1.3; letter-spacing: -.025em; margin: 0 0 .85rem; font-weight: 720; }
+    p { margin: .8rem 0 0; }
+    strong { font-weight: 700; }
+    .proposed { color: #71500b; font-size: .875rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 .55rem; }
+    footer { background: #eaf0f6; border-top: 1px solid var(--line); padding-block: 1.75rem 2rem; font-size: .9375rem; color: var(--muted); }
+    footer p { max-width: 55rem; margin: 0; }
+    footer p + p { margin-top: .75rem; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 2rem, 42rem); }
+      .masthead { padding-bottom: 1.6rem; }
+      h1 { margin-top: 1.5rem; }
+      .layout { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; padding-block: 1.6rem 2.5rem; }
+      .sidebar { position: static; }
+      nav ol { display: flex; flex-wrap: wrap; column-gap: 1.1rem; row-gap: .3rem; }
+      nav li + li { margin-top: 0; }
+      .maintainer { margin: 1rem 0 0; padding-top: .7rem; }
+      .maintainer strong { display: inline; }
+      article { padding: 0 1.2rem 1.4rem; }
+    }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .wrap { width: 100%; }
+      .masthead { background: white; color: black; border-top: 0; padding: 0 0 1rem; }
+      .intro, .version { color: #333; }
+      .notice { border: 1px solid #555; background: white; color: black; }
+      .layout { display: block; padding: 0; }
+      .sidebar, .skip-link { display: none; }
+      article { padding: 0; border: 0; }
+      section { break-inside: avoid; padding-top: 1rem; }
+      section + section { margin-top: 1rem; }
+      footer { background: white; margin-top: 1.5rem; padding-top: 1rem; }
+      a { color: black; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#policy">Skip to policy</a>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="topline">
+        <span class="brand">PitRelay</span>
+        <span class="version">Draft version <time datetime="2026-10-05">2026-10-05</time></span>
+      </div>
+      <h1>PitRelay Privacy</h1>
+      <p class="intro">How optional issue reports would be used, who would process them, and how deletion would work.</p>
+      <div class="notice" aria-labelledby="collection-status">
+        <strong id="collection-status">Draft policy — report collection is closed</strong>
+        <p>No report submission is available. These proposed terms are not adopted and have no effective date. Operator identity, a privacy contact, account settings and deletion procedures still need to be confirmed before collection opens.</p>
+      </div>
+    </div>
+  </header>
+  <main class="wrap layout" id="policy">
+    <aside class="sidebar">
+      <nav aria-label="Policy sections">
+        <p class="nav-label">In this policy</p>
+        <ol>
+          <li><a href="#your-choice">Your choice</a></li>
+          <li><a href="#report-content">Report contents</a></li>
+          <li><a href="#review">Review and AI use</a></li>
+          <li><a href="#retention">Retention and deletion</a></li>
+          <li><a href="#requests">Privacy requests</a></li>
+          <li><a href="#sharing">Permission to share</a></li>
+        </ol>
+      </nav>
+      <p class="maintainer">Public GitHub maintainer<br><strong>catswert</strong></p>
+    </aside>
+    <article aria-label="Draft issue-report privacy policy">
+      <section id="your-choice" aria-labelledby="choice-title">
+        <h2 id="choice-title">Your choice</h2>
+        <p>Issue reports would be voluntary. You can use PitRelay without sending one. Preparing or downloading a report package creates a local review copy; it does not submit it.</p>
+        <p>The proposed form would accept an issue description and optional details. A ZIP package would be optional, including when package creation fails. No form or upload is available on this page.</p>
+      </section>
+      <section id="report-content" aria-labelledby="content-title">
+        <h2 id="content-title">What a report could contain</h2>
+        <p>A package may contain explicitly selected robot code, supported logs, diagnostic records, observations, proposed changes, verification records and visible user-facing conversation excerpts. <strong>Private model reasoning is excluded.</strong> Preparing a package does not authorize access to unrelated files.</p>
+        <p>PitRelay attempts to redact identifying details and credentials. <strong>Redaction does not guarantee anonymity.</strong> Code, telemetry and writing can still identify people or teams. Review every file before sharing; exclude secrets, unrelated personal information and material you lack permission to share.</p>
+        <p>The proposed Google Form would have email collection off. File upload would still require Google sign-in, and selecting a file may transfer it before submission. Account and access settings remain unverified; this would not be an anonymous service.</p>
+      </section>
+      <section id="review" aria-labelledby="review-title">
+        <p class="proposed">Proposed use and access</p>
+        <h2 id="review-title">Human review, assisted by Codex</h2>
+        <p>The owner intends to be the sole authorized human reviewer: screen descriptions, then periodically use OpenAI Codex to investigate selected packages. Google Forms/Drive would receive and store reports; OpenAI would process selected content, prompts, tool results and findings. Sole human review does not exclude provider processing, administrative access or legally required disclosure.</p>
+        <p>Reports would help improve PitRelay’s code, instructions and regression tests. <strong>PitRelay would not use them to train or fine-tune model weights.</strong> The proposed policy excludes selling reports, advertising use and public release of submitted packages or excerpts. General improvements and independently authored synthetic tests could be published without retaining private submitted material.</p>
+        <p>OpenAI model-improvement settings, including the separate Codex environment control, still need verification. The proposed process would disable eligible training use and avoid feedback that could share report conversations for training. Those controls do not prevent processing needed to provide the service or override provider retention.</p>
+      </section>
+      <section id="retention" aria-labelledby="retention-title">
+        <p class="proposed">Proposed maximum</p>
+        <h2 id="retention-title">90 calendar days, or sooner</h2>
+        <p>The proposal is to delete owner-controlled reports and identifiable working copies <strong>within 90 calendar days of submission</strong>, earlier when no longer needed. Copying, extracting or reprocessing a report would not restart that deadline.</p>
+        <p>This would cover form responses, uploaded files, linked spreadsheets, local copies, trash, backups, and report-bearing AI tasks, conversations, attachments and findings under the owner’s controls. Deletion would include invoking available provider deletion processes; archiving alone would not count. The actual procedures have not been verified.</p>
+        <p>A specific legal retention obligation could require a limited exception for that purpose. Google and OpenAI may retain service-level recovery, security, legal or backup records under their policies. The proposed deadline cannot guarantee immediate removal from provider-controlled systems or delete copies you keep.</p>
+      </section>
+      <section id="requests" aria-labelledby="requests-title">
+        <p class="proposed">Contact not yet designated</p>
+        <h2 id="requests-title">Questions, correction and deletion</h2>
+        <p>A working privacy contact must be published before collection opens. The proposed process would ask for a submission date and reference, if available, plus only the information needed to locate and verify a request. Do not resend a package or post private material in public GitHub issues.</p>
+        <p>The proposed response commitment is to complete verified deletion requests for owner-controlled copies within 30 calendar days, sooner where required, without extending an existing 90-day deadline. Any inability to locate a report or specific legal retention requirement would be explained.</p>
+      </section>
+      <section id="sharing" aria-labelledby="sharing-title">
+        <h2 id="sharing-title">Permission to share</h2>
+        <p>Only share material you are authorized to provide. The proposed service is not intended to collect personal information from children under 13. Student reports may need help from a parent or adult mentor; applicable safeguards must be resolved before collection.</p>
+        <p>A future adopted policy would identify its effective date and contact. Material changes would require notice and any necessary fresh permission; publishing a new policy would not authorize public release or model-weight training of earlier reports.</p>
+      </section>
+    </article>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p><strong>About this website.</strong> GitHub hosts this public policy site and may process request data under its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">Privacy Statement</a>. This page has no first-party analytics, forms or file uploads.</p>
+      <p>Provider information: <a href="https://policies.google.com/privacy">Google Privacy Policy</a> · <a href="https://policies.google.com/technologies/retention">Google retention</a> · <a href="https://openai.com/policies/privacy-policy/">OpenAI Privacy Policy</a> · <a href="https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance">OpenAI model-improvement controls</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
