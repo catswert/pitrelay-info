@@ -41,7 +41,7 @@ To check the download first, compare its SHA-256 with the one on the download pa
 Download and run in one line (works while the repository is public):
 
 * macOS, Linux: `curl -fLO https://github.com/catswert/pitrelay-info/raw/claude-code/pitrelay-claude-code.zip && python3 pitrelay-claude-code.zip`
-* Windows PowerShell: `curl.exe -fLO https://github.com/catswert/pitrelay-info/raw/claude-code/pitrelay-claude-code.zip; py pitrelay-claude-code.zip`
+* Windows PowerShell: `curl.exe -fLO https://github.com/catswert/pitrelay-info/raw/claude-code/pitrelay-claude-code.zip; if ($?) { py pitrelay-claude-code.zip }`
 
 If the repository is private, download the ZIP in a browser where you are signed in to GitHub, then run step 2.
 
@@ -67,14 +67,14 @@ If the repository is private, download the ZIP in a browser where you are signed
    * Then it runs `claude plugin marketplace add <folder>` and `claude plugin install pitrelay@pitrelay-local`.
    * If something fails after an earlier installation was removed, it prints the commands that put the earlier one back.
    * **Without the `claude` command** (for example with only the desktop app), it offers to add PitRelay to Claude Code's settings file instead (`~/.claude/settings.json`; Windows: `%USERPROFILE%\.claude\settings.json`). It adds the same two entries the `claude` commands write there, and keeps a copy of the previous file. Claude Code loads PitRelay from there when a new session starts.
-8. **Prints the commands for later**: check and uninstall. They run the installer's unpacked copy, so you do not need the ZIP again.
+8. **Prints the commands for later**: check and uninstall. They run the installer's own copy in its folder, also when you started it from an unzipped folder, so you need neither the ZIP nor that folder again. On Windows, a command may come as two lines: paste the one for your terminal, PowerShell or Command Prompt.
 
 | | macOS | Linux | Windows |
 |---|---|---|---|
 | Installer folder: the prepared plugin, PitRelay's state, the unpacked download | `~/Library/Application Support/PitRelay for Claude Code/` | `~/.local/share/pitrelay-claude/` | `%LOCALAPPDATA%\PitRelayClaude\` |
 | Collected logs (shared with the standalone collector) | `~/Library/Application Support/PitRelayCollector/` | `~/.local/share/pitrelay-collector/` | `%LOCALAPPDATA%\PitRelayCollector\` |
 
-Do not move or delete the prepared plugin folder (`marketplace-<date>-<time>`) while PitRelay is installed: Claude Code loads it from there. Keep the unpacked copy in `downloads/`, too: the check and uninstall commands use it. The downloaded ZIP is not needed afterwards.
+Do not move or delete the prepared plugin folder (`marketplace-<date>-<time>`) while PitRelay is installed: Claude Code loads it from there. Keep the copy in `downloads/`, too: the check and uninstall commands use it. The downloaded ZIP is not needed afterwards.
 
 Pressing Ctrl-C while the plugin is being prepared is safe. The installer waits for setup to remove what it had created.
 
@@ -87,7 +87,7 @@ Pressing Ctrl-C while the plugin is being prepared is safe. The installer waits 
    * the Driver Station laptop's log folder, for example `C:\Users\Public\Documents\FRC\Log Files`.
 4. Then ask in plain words, for example "collect the logs and look at the brownout in the last match", or use `/pitrelay:diagnose <symptom>`.
 
-Claude Code asks before each tool call. To allow a tool you trust permanently, use `/permissions`, for example `mcp__plugin_pitrelay_pr__collector_status`.
+Claude Code asks before each tool call. To allow a tool you trust permanently, use `/permissions` in a terminal session, for example `mcp__plugin_pitrelay_pr__collector_status`. In the desktop app, add the tool's name to `permissions.allow` in `~/.claude/settings.json` (Windows: `%USERPROFILE%\.claude\settings.json`), for example `"permissions": {"allow": ["mcp__plugin_pitrelay_pr__collector_status"]}`.
 
 A robot password, if your team set one, is never typed into the chat. The collector opens its own page in your browser for it and keeps it in the system password store.
 
@@ -96,6 +96,10 @@ A robot password, if your team set one, is never typed into the chat. The collec
 * The desktop app's local sessions read the same settings as the command line, so PitRelay appears there once it is installed. Not tested.
 * Adding a source normally asks you to confirm in a dialog. The desktop app may not show these dialogs, and then the change is cancelled. If that happens, ask Claude to **open the collector page**, and add the robot and the Driver Station folder there, in your browser.
 * Plugins do not load in the desktop app's WSL sessions. On Windows, install PitRelay on Windows itself, not inside WSL.
+
+### macOS: Local Network permission
+
+On macOS 15 and later, connecting to the robot (`172.22.11.2`, `10.TE.AM.2`) needs **Local Network** permission for the app that runs Claude Code: the Claude desktop app, iTerm2 or VS Code (Terminal.app is not affected). macOS asks the first time. The first connection can fail while that question is still on screen, so collect again after you answer. If you answered *Don't Allow*, or collection fails with "No route to host", turn the app on in **System Settings → Privacy & Security → Local Network**. Background collection runs Python, which may need the same permission.
 
 ## Requirements
 
@@ -120,7 +124,7 @@ About 60 MB of disk, plus the collected logs over time.
 
 ## Options
 
-Add them after the file name, for example `python3 pitrelay-claude-code.zip --java /path/to/java`.
+Add them after the file name, for example `python3 pitrelay-claude-code.zip --java /path/to/java` (Windows: `py pitrelay-claude-code.zip --java C:\path\to\java.exe`).
 
 | Option | Effect |
 |---|---|
@@ -137,7 +141,7 @@ Add them after the file name, for example `python3 pitrelay-claude-code.zip --ja
 | `--claude <path>` | The `claude` command, if it is not on your PATH |
 | `--version` | Print the version |
 
-`doctor` instead of an option (`python3 pitrelay-claude-code.zip doctor`) lists the Pythons, Javas and Claude Code the installer finds, and what is installed. Include it when you ask for help.
+`doctor` instead of an option (`python3 pitrelay-claude-code.zip doctor`; Windows: `py pitrelay-claude-code.zip doctor`) lists the Pythons, Javas and Claude Code the installer finds, and what is installed. Include it when you ask for help.
 
 ## Check, upgrade, uninstall
 
@@ -161,11 +165,11 @@ Use the commands the installer printed at the end. Or run the ZIP again with `ve
 
 The installer only automates these steps. Unzip the file (Linux: `unzip pitrelay-claude-code.zip -d pitrelay-claude-code`; Windows: right-click, *Extract All*). In that folder, `python3 install.py` (Windows: double-click `install.cmd`) is the same installer as running the ZIP. To do it all yourself instead:
 
-1. Read `pitrelay-0.1.0-dev-20261024-engine-fixes-1/docs/release/PITRELAY_LICENSE.md`. Its SHA-256 is the license hash in the table above.
-2. Prepare the plugin into two **new** folders (one line). Every path must be absolute:
+1. Read `pitrelay-0.1.0-dev-20261024-engine-fixes-1/docs/release/PITRELAY_LICENSE.md`. Its SHA-256 is the license hash in the table above. On a Mac, read it in Terminal (`less <file>`): Finder would add `.DS_Store` files to the package folder, which step 2 refuses. If it already did, remove them: `find pitrelay-0.1.0-dev-20261024-engine-fixes-1 -name .DS_Store -delete`.
+2. Prepare the plugin into two **new** folders (one line). Every path must be absolute. Use a Python 3.10 or later by its versioned name (`python3.13` on a Mac, where plain `python3` is Apple's 3.9; `py` on Windows), because only the installer moves on to a newer Python by itself:
 
    ```text
-   python3 plugin/configure_claude.py --package <absolute path>/pitrelay-0.1.0-dev-20261024-engine-fixes-1
+   python3.13 plugin/configure_claude.py --package <absolute path>/pitrelay-0.1.0-dev-20261024-engine-fixes-1
        --manifest-sha256 e62f01a685dbd1783a1af9211bc49303fdf3fa093ed202e2faf89df2788b5723
        --accept-license 04bccdf9562964c3f6b9bd030f84a5d504a7c69910355400bfbfd4e3ec3878a4
        --java <absolute path of java> --state <new state folder> --output <new plugin folder>
@@ -176,11 +180,13 @@ The installer only automates these steps. Unzip the file (Linux: `unzip pitrelay
 
 ## Offline computers
 
-On a computer with internet and the same operating system and Python version, unzip the file and run:
+On a computer with internet, unzip the file and run, with the same Python version that the offline computer will use (`doctor` shows which one the installer picks there):
 
 ```sh
-python3 plugin/configure_claude.py wheelhouse --dest <new folder>
+python3.13 plugin/configure_claude.py wheelhouse --dest <new folder>
 ```
+
+On Windows: `py plugin\configure_claude.py wheelhouse --dest <new folder>`.
 
 For another platform, add for example `--platform win_amd64 --python-version 3.12`. Copy that folder to the offline computer and run the installer with `--wheelhouse <path of that folder>`.
 
@@ -198,7 +204,8 @@ For another platform, add for example `--platform win_amd64 --python-version 3.1
 | pip cannot reach PyPI | Use a wheelhouse ([Offline computers](#offline-computers)) or `--without-collector` |
 | `claude` not found | Let the installer add PitRelay to the settings file, or install the Claude Code command line ([Requirements](#requirements)) and run the installer again |
 | Typing `claude` opens the desktop app (Windows) | An older Claude desktop app took over the name; update the desktop app. The installer skips that alias. |
-| `/mcp` shows that the server failed | Run `verify`. If Java or Python was removed, or upgraded to another major version, run the installer again. |
+| `/mcp` shows that the server failed | Run `verify`. If Java or Python was removed, or upgraded to another major version, run the installer again. On Windows, a Java update (for example `winget upgrade`) installs into a new folder named for the new version, so run the installer again after one; the installer warns about this when it applies. |
+| PowerShell says "Unexpected token" for a check or uninstall command | Use the line marked `(PowerShell)`; it starts with `&` |
 
 ## What the fixed engine changes
 
@@ -220,8 +227,9 @@ Tested on Linux (Claude Code 2.1.310, Java 21):
   * `claude mcp list`, where the server connects;
   * the plugin's server driven exactly as Claude Code starts it: 121 tools, collection from a folder, export, and analysis by the fixed engine of a WPILib log, both Driver Station files and a REVLOG 2.0 file (17 of 17 checks).
 * **Upgrade** (the state and the collected logs are kept) and **uninstall** (including turning off launch at login).
-* **Without the `claude` command:** PitRelay added to the settings file (other settings kept, a backup made), a new session connecting to it, upgrade and uninstall the same way.
-* **The refusals:** a changed or added file, a wrong license hash, a state folder the installer did not make, no Java. Finding Java and Python (WPILib folders, Apple's `python3`, the Windows install manager) was tested with stand-in programs on Linux.
+* **Without the `claude` command:** PitRelay added to the settings file, also one that starts with a BOM, as Windows editors write. Other settings are kept and a backup is made. A new session connects to it, and upgrade and uninstall work the same way.
+* **Installing from an unzipped folder** that is deleted afterwards: the printed check and uninstall commands still work, and `verify` ignores the `.DS_Store` files Finder adds.
+* **The refusals:** a changed or added file, a wrong license hash, a state folder the installer did not make, no Java. Finding Java and Python (WPILib folders, Apple's `python3`, the Windows install manager), the Windows program lookup that skips the current folder, and the PowerShell and Command Prompt forms of the printed commands were tested with stand-in programs on Linux.
 * **The engine:**
   * PitRelay's own test suite, 2614 tests, with the same 3 failures as the unchanged v11 source on that computer, which lacks WPILib's native libraries;
   * 19 new tests;
